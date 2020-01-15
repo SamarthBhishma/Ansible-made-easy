@@ -1,0 +1,66 @@
+What is Ansible?
+Ansible is an automation and orchestration tool popular for its simplicity of installation.
+Ansible functions by connecting via SSH to the clients, so it doesn't need a special agent on the client-side, and by pushing modules to the clients.
+The modules are then executed locally, on the client-side, and the output is pushed back to the Ansible server.
+Client details, like hostnames or IP addresses and SSH ports, are stored in files called inventory files. Once you have created an inventory file and populated it, ansible can use it.
+-------------------------------------------------------------------------------------------------------------------------------
+Important terms used in Ansible:
+Ansible server:
+The machine where Ansible is installed and from which all tasks and playbooks will run
+
+Module:
+Basically, a module is a command or set of similar commands meant to be executed on the client-side
+
+Task:
+A task is a section that consists of a single procedure to be completed
+
+Role:
+A way of organizing tasks and related files to be later called in a playbook
+
+Fact:
+Information fetched from the client system from the global variables with the gather-facts operation
+
+Inventory:
+File containing data about the ansible client servers. Defined in later examples as hosts file
+
+Play:
+Execution of a playbook
+
+Handler:
+Task which is called only if a notifier is present
+
+Notifier:
+Section attributed to a task which calls a handler if the output is changed
+
+Tag:
+Name set to a task which can be used later on to issue just that specific task or group of tasks.
+
+---------------------------------------------------------------------------------------------------------------
+Install ansible on Ubuntu/Debian systems
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt update
+$ sudo apt install ansible
+-----------------------------------------------------------------------------------
+
+Ansible Host configuration
+Configure SSH access to the server
+Next, we need to make it possible for our node to access the Ansible server. We do this via Secure Shell (SSH). 
+
+Setting up our node
+sudo nano /etc/ansible/hosts
+
+In that file, create a new group for your nodes (in our case, we've only connected one node) and associate the IP addresses like so:
+
+[group_name]
+ALIAS NODE_IP
+Where group_name is the name of the group to be created, ALIAS is an alias for the node, and NODE_IP is the IP address of your node. If you have more than one node, list them like so:
+
+[webservers]
+WEB1@192.168.1.100
+WEB2@192.168.1.101
+WEB3@192.168.1.102
+Save and close that file. You can now test this by pinging all of your added nodes with the command:
+
+ansible -m ping all
