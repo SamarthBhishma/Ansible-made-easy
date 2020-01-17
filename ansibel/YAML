@@ -1,0 +1,10 @@
+##### YAML SYNTAX ####
+YAML uses simple key-value pair to represent the data.
+Every YAML file optionally starts with “---” and ends with “...”.
+There should be space between ":" and value.
+		Eg: 
+		--- # start 
+		Employee:
+				name: sam
+		... #end
+
