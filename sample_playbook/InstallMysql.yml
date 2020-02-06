@@ -1,0 +1,15 @@
+
+- hosts: vis
+  become_user: root
+  become: yes
+  tasks:
+  - name: check if mysql is already installed
+    shell: mysql --version | grep 5.7.28
+    register: mysql_is_installed
+    failed_when: yes
+
+  - name: Install mysqlserver
+    apt: pkg="{{mysqlserver}}" state=present
+    when: mysql_is_installed.rc==1
+    notify:
+      - restart mysql_db

@@ -1,0 +1,6 @@
+  # This playbook contains common plays that will be run on all nodes
+  - name: Install java
+    apt: pkg=openjdk-8-jdk state=present
+    tags: java
+
+    

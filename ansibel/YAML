@@ -8,3 +8,25 @@ There should be space between ":" and value.
 				name: sam
 		... #end
 
+Syntax for dictionaries in YAML
+	Eg:
+		Employee: {name: sam, id: 007}
+
+Syntax for list in YAML
+	Eg:
+		Employee: ['sam', ‘viky’, ‘ram’] 
+
+
+Syntax for List inside Dictionaries
+--- 
+employee: 
+  id: 3
+  loc: 
+    - bal
+    - iii
+    - ppp
+  name: "sam"
+  rollNo: 34
+
+
+

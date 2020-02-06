@@ -3,6 +3,10 @@ Ansible is an automation and orchestration tool popular for its simplicity of in
 Ansible functions by connecting via SSH to the clients, so it doesn't need a special agent on the client-side, and by pushing modules to the clients.
 The modules are then executed locally, on the client-side, and the output is pushed back to the Ansible server.
 Client details, like hostnames or IP addresses and SSH ports, are stored in files called inventory files. Once you have created an inventory file and populated it, ansible can use it.
+
+
+Why do we need ansible??
+Because of IDEMPOTENCE it is consistant 
 -------------------------------------------------------------------------------------------------------------------------------
 Important terms used in Ansible:
 Ansible server:
@@ -51,6 +55,9 @@ Next, we need to make it possible for our node to access the Ansible server. We 
 Setting up our node
 sudo nano /etc/ansible/hosts
 
+NOTE:
+The default location for the inventory file is /etc/ansible/hosts, but it’s also possible to change the location of the inventory file by uncommenting the inventory parameter in /etc/ansible/ansible.cfg
+
 In that file, create a new group for your nodes (in our case, we've only connected one node) and associate the IP addresses like so:
 
 [group_name]
@@ -62,5 +69,27 @@ WEB1@192.168.1.100
 WEB2@192.168.1.101
 WEB3@192.168.1.102
 Save and close that file. You can now test this by pinging all of your added nodes with the command:
-
 ansible -m ping all
+
+
+-----------------------------------------------------------------------------------------------------------
+
+The machine where the IAC software installed is typically called as server 
+
+Ansible works on push model bascilly server communitates with node 
+In pull model there is nessaity for agent to be installed on node 
+
+
+-------------------------------------------------------------------------------------------------------------
+
+SAMPLE COMMAND TO INSTALL APACHE2 IN ALL THE NODES PRESENT IN GROUP
+ansible testserver -b --become-user=root -m shell -a 'apt-get install apache2 -y' -u USER
+
+-----------------------------
+command to check number of modules in ansible 
+ansible-doc -l | wc -l
+----------------------------------------------------
+What is inventory?
+it is nothing but list of nodes that we want to manage 
+
+What is a playbook?
